@@ -38,12 +38,6 @@ app.get("/api/products", (req, res) => {
 
 app.get("/api/products/asc", (req, res) => {
 
-    // const price = queryValue;
-    
-    // const checkPrice = price !== "" ? `price = ${price}` : "";
-    // const where = checkPrice ? "ORDER BY" : "";
-    // const asc = ascending !== "" ? ``
-
     db.query(`SELECT * FROM products ORDER BY price ASC`, 
     (err, result) => {
         if (err) {
@@ -56,13 +50,33 @@ app.get("/api/products/asc", (req, res) => {
 
 app.get("/api/products/desc", (req, res) => {
 
-    // const price = queryValue;
-    
-    // const checkPrice = price !== "" ? `price = ${price}` : "";
-    // const where = checkPrice ? "ORDER BY" : "";
-    // const asc = ascending !== "" ? ``
-
     db.query(`SELECT * FROM products ORDER BY price DESC`, 
+    (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send(result);
+        };
+    });
+});
+
+app.get("/api/products/equipments", (req, res) => {
+
+    db.query(`SELECT * FROM products
+    WHERE product_type = "Equipments"`, 
+    (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send(result);
+        };
+    });
+});
+
+app.get("/api/products/apparel", (req, res) => {
+
+    db.query(`SELECT * FROM products
+    WHERE product_type = "Apparel"`, 
     (err, result) => {
         if (err) {
             console.log(err)
