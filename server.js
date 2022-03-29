@@ -25,7 +25,45 @@ app.get("/", (req, res) => {
     res.send("Ecommerce Products!");
 });
 app.get("/api/products", (req, res) => {
-    db.query(`SELECT * FROM products`, (err, result) => {
+    
+    db.query(`SELECT * FROM products`, 
+    (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send(result);
+        };
+    });
+});
+
+app.get("/api/products/asc", (req, res) => {
+
+    // const price = queryValue;
+    
+    // const checkPrice = price !== "" ? `price = ${price}` : "";
+    // const where = checkPrice ? "ORDER BY" : "";
+    // const asc = ascending !== "" ? ``
+
+    db.query(`SELECT * FROM products ORDER BY price ASC`, 
+    (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+            res.send(result);
+        };
+    });
+});
+
+app.get("/api/products/desc", (req, res) => {
+
+    // const price = queryValue;
+    
+    // const checkPrice = price !== "" ? `price = ${price}` : "";
+    // const where = checkPrice ? "ORDER BY" : "";
+    // const asc = ascending !== "" ? ``
+
+    db.query(`SELECT * FROM products ORDER BY price DESC`, 
+    (err, result) => {
         if (err) {
             console.log(err)
         } else {
