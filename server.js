@@ -21,7 +21,9 @@ db.connect(err => {
 
 app.use(cors());
 app.use(express.json());
-
+app.get("/", (req, res) => {
+    res.send("Ecommerce Products!");
+});
 app.get("/api/products", (req, res) => {
     db.query(`SELECT * FROM products`, (err, result) => {
         if (err) {
