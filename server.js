@@ -12,12 +12,12 @@ const db = mysql.createPool({
     database: 'heroku_3adbd2446816101'
 });
 
-db.connect(err => {
-    if (err) {
-        return err;
-    }
-    console.log("Connection Successful")
-})
+// db.connect(err => {
+//     if (err) {
+//         return err;
+//     }
+//     console.log("Connection Successful")
+// })
 
 app.use(cors());
 app.use(express.json());
